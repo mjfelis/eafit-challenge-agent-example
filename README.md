@@ -61,10 +61,14 @@ You can verify it works by connecting to the deployed example agent at https://e
 
 ```bash
 # 1. Set up the VS Agent (deploys container, gets Service credential)
+
+set -a
 source config.env
+set +a
 ./scripts/setup.sh
 
 # 2. Start the chatbot stack (chatbot + redis + postgres)
+export MCP_CONFIG_ENCRYPTION_KEY=$(openssl rand -hex 32)
 export OPENAI_API_KEY=sk-...
 ./scripts/start.sh
 ```
